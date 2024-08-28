@@ -19,10 +19,10 @@
     "url": "https://github.com/HaseebUllahAbbasi/node_template"
   },
   "scripts": {
-    "start": "nodemon ./server.js",
+    "start": "node ./server.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon src/server",
-    "prod": "NODE_ENV=PRODUCTION nodemon src/server",
-    "build": "mkdir -p build && cp -R src/* build/"
+    "prod": "NODE_ENV=PRODUCTION node src/server",
+    "build": "echo 'Running build process...' && echo 'Build commands will be added here' && exit 0"
   },
   "author": "",
   "license": "ISC"
