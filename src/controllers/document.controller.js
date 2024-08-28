@@ -7,7 +7,11 @@ exports.createDocument = async (req, res) => {
       req.user._id,
       req.body
     );
-    res.status(201).json(document);
+    if (document === "Document with this ID already exists") {
+      res.status(200).json({ message: "Document with this ID already exists" });
+    } else {
+      res.status(201).json(document);
+    }
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -17,7 +21,7 @@ exports.getDocument = async (req, res) => {
   try {
     const document = await documentService.getDocument(
       req.params.id,
-      req.user ? req.user._id : null,
+      req.user._id,
       req.query.token
     );
 
