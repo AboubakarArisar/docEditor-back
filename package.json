@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "",
   "bin": "./bin/cli.js",
-  "main": "src/server.js",
+  "main": "./src/server.js",
   "dependencies": {
     "body-parser": "^1.19.1",
     "cors": "^2.8.5",
@@ -19,7 +19,7 @@
     "url": "https://github.com/HaseebUllahAbbasi/node_template"
   },
   "scripts": {
-    "start": "node ./server.js",
+    "start": "node ./src/server.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon src/server",
     "prod": "NODE_ENV=PRODUCTION nodemon src/server",
     "build": "mkdir -p build && cp -R src/* build/"
