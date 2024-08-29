@@ -6,9 +6,9 @@ const { checkDocumentAccess } = require("../middlewares/accesscontroll");
 
 const router = express.Router();
 
-router.post("/comments", authMiddleware, commentController.addComment);
+router.post("/comment", authMiddleware, commentController.addComment);
 router.get(
-  "/documents/:documentId/comments",
+  "/documents/:documentId/comment",
   authMiddleware,
   checkDocumentAccess,
   commentController.getComments

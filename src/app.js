@@ -9,13 +9,10 @@ const commentRoutes = require("./routes/comment.routes");
 
 app.use(express.json());
 app.use(cors());
+app.use(errorMiddleware);
 
 app.use("/api/users", userRoutes);
 app.use("/api/documents", documentRoutes);
 app.use("/api/comments", commentRoutes);
 
-const PersonRouter = require("./routes/PersonRoutes");
-app.use(errorMiddleware);
-
-app.use(PersonRouter);
 module.exports = app;
