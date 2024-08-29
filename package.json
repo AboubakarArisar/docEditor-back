@@ -21,8 +21,8 @@
   "scripts": {
     "start": "node ./server.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon src/server",
-    "prod": "NODE_ENV=PRODUCTION node src/server",
-    "build": "echo 'Running build process...' && echo 'Build commands will be added here' && exit 0"
+    "prod": "NODE_ENV=PRODUCTION nodemon src/server",
+    "build": "mkdir -p build && cp -R src/* build/"
   },
   "author": "",
   "license": "ISC"
