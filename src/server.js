@@ -1,6 +1,13 @@
 const app = require("./app");
+const express = require("express");
 const dotenv = require("dotenv");
-
+const router = express.Router();
+app.use(router);
+app.get("/", (req, res) => {
+  res.json({
+    message: "app is live",
+  });
+});
 dotenv.config({ path: "src/config/config.env" });
 
 const connectDatabse = require("./database/connection");
