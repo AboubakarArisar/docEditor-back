@@ -11,7 +11,7 @@ exports.authMiddleware = (req, res, next) => {
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || "documenteditor26"
+      process.env.JWT_SECRET || "documenteditor26@"
     );
     req.user = decoded;
     next();

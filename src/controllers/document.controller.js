@@ -20,22 +20,15 @@ exports.createDocument = async (req, res) => {
 exports.getDocument = async (req, res) => {
   try {
     const document = await documentService.getDocument(
-      req.params.id,
-      req.user._id,
-      req.query.token
+      req.params.id, // Document ID from the URL
+      req.user._id // User ID from the authenticated user
     );
-
-    if (!document) {
-      return res.status(404).json({ error: "Document not found" });
-    }
-
-    if (!document.isAccessibleBy(req.user, req.query.token)) {
-      return res.status(403).json({ error: "Access denied" });
-    }
 
     res.status(200).json(document);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res
+      .status(err.message === "Document not found" ? 404 : 403)
+      .json({ error: err.message });
   }
 };
 

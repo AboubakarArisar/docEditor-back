@@ -9,26 +9,23 @@ exports.createDocument = async (userId, documentData) => {
   const document = new Document({ ...documentData, owner: userId });
   return document.save();
 };
-
-exports.getDocument = async (documentId, userId, shareableToken) => {
-  // Use findOne with id for custom IDs
+exports.getDocument = async (documentId, userId) => {
+  // Find the document using the custom ID
   const document = await Document.findOne({ id: documentId });
 
   if (!document) {
     throw new Error("Document not found");
   }
 
-  // Check if user has direct access (e.g., is the owner or collaborator)
-  if (userId && document.isUserAuthorized(userId)) {
+  // Check if the user is the owner or a collaborator
+  if (
+    document.owner.toString() === userId ||
+    document.collaborators.includes(userId)
+  ) {
     return document;
   }
 
-  // Check if the shareable link (token) grants access
-  if (shareableToken && document.isTokenValid(shareableToken)) {
-    return document;
-  }
-
-  // If neither condition is met, the document can't be accessed
+  // If the user is neither the owner nor a collaborator, deny access
   throw new Error("Access denied");
 };
 

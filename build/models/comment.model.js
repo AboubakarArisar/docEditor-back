@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const commentSchema = new mongoose.Schema({
   content: String,
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  document: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+  // document: { type: mongoose.Schema.Types.ObjectId, ref: "Document" },
+  id: String,
   selection: {
     start: Number,
     end: Number,

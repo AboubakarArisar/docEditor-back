@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const documentSchema = new mongoose.Schema({
   content: String,
-  id: String,
+  id: { type: String, unique: true },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   collaborators: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   viewers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
