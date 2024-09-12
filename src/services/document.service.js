@@ -3,7 +3,7 @@ const Document = require("../models/document.model");
 exports.createDocument = async (userId, documentData) => {
   const result = await Document.find({ id: documentData.id });
   if (result.length > 0) {
-    return "Document with this ID already exists";
+    throw new Error("document wiht this id already exists");
   }
 
   const document = new Document({ ...documentData, owner: userId });

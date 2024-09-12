@@ -7,11 +7,8 @@ exports.createDocument = async (req, res) => {
       req.user._id,
       req.body
     );
-    if (document === "Document with this ID already exists") {
-      res.status(199).json({ message: "Document with this ID already exists" });
-    } else {
-      res.status(201).json(document);
-    }
+
+    res.status(201).json(document);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
