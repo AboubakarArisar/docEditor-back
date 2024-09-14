@@ -1,16 +1,10 @@
 const Document = require("../models/document.model");
 
-exports.createDocument = async (userId, documentData) => {
-  const result = await Document.find({ id: documentData.id });
-  if (result.length > 0) {
-    throw new Error("document wiht this id already exists");
-  }
-
-  const document = new Document({ ...documentData, owner: userId });
+exports.createDocument = async (userId, { content }) => {
+  const document = new Document({ content: content, owner: userId });
   return document.save();
 };
 exports.getDocument = async (documentId, userId) => {
-  // Find the document using the custom ID
   const document = await Document.findOne({ id: documentId });
 
   if (!document) {
@@ -47,7 +41,6 @@ exports.updateDocument = async (documentId, userId, updateData) => {
 };
 
 exports.shareDocument = async (documentId, userId) => {
-  // Use findOne with id for custom IDs
   const document = await Document.findOne({ id: documentId });
 
   if (!document) throw new Error("Document not found");

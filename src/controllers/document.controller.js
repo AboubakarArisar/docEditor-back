@@ -17,8 +17,8 @@ exports.createDocument = async (req, res) => {
 exports.getDocument = async (req, res) => {
   try {
     const document = await documentService.getDocument(
-      req.params.id, // Document ID from the URL
-      req.user._id // User ID from the authenticated user
+      req.params.id,
+      req.user._id
     );
 
     res.status(200).json(document);

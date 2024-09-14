@@ -6,12 +6,11 @@ const { checkDocumentAccess } = require("../middlewares/accesscontroll");
 
 const router = express.Router();
 
-router.post("/comment", authMiddleware, commentController.addComment);
-router.get(
-  "/documents/:documentId/comment",
+router.post(
+  "/:documentId/comment",
   authMiddleware,
-  checkDocumentAccess,
-  commentController.getComments
+  commentController.addComment
 );
+router.get("/:documentId/comments", commentController.getComments);
 
 module.exports = router;

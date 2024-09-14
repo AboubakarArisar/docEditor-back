@@ -16,6 +16,7 @@ exports.signup = catchAsyncError(async (req, res) => {
 exports.login = catchAsyncError(async (req, res) => {
   try {
     const token = await userService.login(req.body);
+    res.setHeader("Authorization", `Bearer ${token}`);
     res.status(200).json({ token });
   } catch (err) {
     res.status(400).json({ error: err.message });
